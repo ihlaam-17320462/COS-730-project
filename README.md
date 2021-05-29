@@ -1,6 +1,6 @@
 # DropIT
 
-![DropIT Logo](https://raw.githubusercontent.com/ihlaam-17320462/DropIT/master/Logo.png)
+![DropIT Logo](/main/DropIT.png)
 
 ### Description
 
