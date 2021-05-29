@@ -1,6 +1,6 @@
 # DropIT
 
-![alt text](https://github.com/ihlaam-17320462/DropIT/blob/main/DropIT.png)
+![alt text](https://github.com/ihlaam-17320462/COS-730-project/blob/main/DropIT.png)
 
 ### Description
 
