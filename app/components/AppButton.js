@@ -7,13 +7,11 @@ import colors from "../config/colours";
 //ALL TO DO IS PASS IN TEXT TO SHOW ON BUTTON AND AND ONPRESS EVENT
 
 
-function AppButton({ title, onPress, color = "primary", width, borderRadius,  }) {
+function AppButton({ title, onPress, color = "primary", width = "100%"}) {
   return (
     <TouchableOpacity
-      style={[styles.button, { backgroundColor: colors[color] }]}
+      style={[styles.button, { backgroundColor: colors[color] }, {width} ]}
       onPress={onPress}
-      width = {width}
-      borderRadius = {borderRadius}
     >
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
@@ -27,7 +25,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 15,
-    width: "100%",
     marginVertical: 10,
   },
   text: {
