@@ -1,15 +1,15 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import CustDeliveryScreen from "../screens/CustDeliveryScreen";
+import CustOrderScreen from "../screens/CustOrdersScreen";
 
-//NOTE : Where user can see all previous orders
+//NOTE : Home screen, where user can create a new request 
 
 const Stack = createStackNavigator();
 
 const OrdersNavigator = () => (
   <Stack.Navigator >
-    <Stack.Screen name="Deliveries" component={CustDeliveryScreen} />
+    <Stack.Screen name="Orders" component={CustOrdersScreen} /> 
   </Stack.Navigator>
 );
 
