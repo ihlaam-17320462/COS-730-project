@@ -25,7 +25,7 @@ const AppNavigator = () => (
       component={RequestNavigator}
       options={{
         tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="truck-fast" color={color} size={size} />
+          <MaterialCommunityIcons name="home" color={color} size={size} />
         ),
       }}
     />

@@ -2,19 +2,19 @@ import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 
 import AppText from "./AppText";
-import colors from "../config/colors";
+import colors from "../config/colours";
 
 function AppCard({ title, subTitle, image }) {
   return (
-    <View style={styles.card}>
-      <Image style={styles.image} source={image} />
+    <View style={styles.card}>  
+    <Image style={styles.image} source={image} />
       <View style={styles.detailsContainer}>
-        <Text style={styles.title} numberOfLines={1}>
+        <AppText style={styles.title} numberOfLines={1}>
           {title}
-        </Text>
-        <Text style={styles.subTitle} numberOfLines={2}>
+        </AppText>
+        <AppText style={styles.subTitle} numberOfLines={1}>
           {subTitle}
-        </Text>
+        </AppText>
       </View>
     </View>
   );
@@ -23,7 +23,7 @@ function AppCard({ title, subTitle, image }) {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 15,
-    backgroundColor: colors.white,
+    backgroundColor: colors.accent1,
     marginBottom: 20,
     overflow: "hidden",
   },
