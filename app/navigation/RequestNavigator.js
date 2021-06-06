@@ -2,22 +2,26 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import CustRequestsScreen from "../screens/CustRequestsScreen";
-import CustQuoteScreen from "../screens/CustQuoteScreen";
-import CustNewOrderScreen from "../screens/CustNewOrderScreen";
+import CustOrderDetailsScreen from "../screens/CustOrderDetailsScreen";
+import CustCreateOrderScreen from "../screens/CustCreateOrderScreen";
 import CustTrackingScreen from "../screens/CustTrackingScreen";
-import CustDeliveryInfoScreen from "../screens/CustDeliveryInfoScreen";
+import colors from "../config/colours";
 
 //NOTE : Home screen, where user can create a new request 
 
 const Stack = createStackNavigator();
 
 const RequestNavigator = () => (
-  <Stack.Navigator >
-    <Stack.Screen name="Requests" component={CustRequestsScreen} /> 
-    <Stack.Screen name="Quoting" component={CustQuoteScreen} />
-    <Stack.Screen name="NewOrder" component={CustNewOrderScreen} />
-    <Stack.Screen name="Track" component={CustTrackingScreen} />
-    <Stack.Screen name="DeliveryInfo" component={CustDeliveryInfoScreen} />
+  <Stack.Navigator 
+    screenOptions={{ 
+      headerStyle: { backgroundColor: colors.primary},
+      headerTintColor: colors.secondary,
+    }}
+  > 
+  <Stack.Screen name="Requests" component={CustRequestsScreen}  />
+  <Stack.Screen name="OrderDetails" component={CustOrderDetailsScreen} />
+  <Stack.Screen name="CreateOrder" component={CustCreateOrderScreen} />
+  <Stack.Screen name="Track" component={CustTrackingScreen} />
   </Stack.Navigator>
 );
 

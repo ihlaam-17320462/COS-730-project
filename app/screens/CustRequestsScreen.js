@@ -1,11 +1,14 @@
 //NOTE : Must still integrate with google maps search, need Api key to do
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
+import {NavigationContainer, useNavgiation} from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/stack";
 import * as Yup from "yup";
 import * as Location from 'expo-location';
 
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
+import AppFormLocation from "../components/forms/AppFormLocation";
 
 const vehicle_types = [
     { label : "Scooter", value : 1} ,
@@ -14,15 +17,22 @@ const vehicle_types = [
 ];
 
 const validationSchema = Yup.object().shape({
-  pickup: Yup.string().required().label("Pickup Address"),
-  dropoff: Yup.string().required().label("Dropoff Address"),
-  vehicle: Yup.object().required().nullable().label("Vehicle Type")
+  pickup: Yup.object().required().nullable().label('Pickup Location'),
+  dropoff: Yup.object().required().nullable().label("Dropoff Address"),
+  vehicle: Yup.object().required().nullable().label("Vehicle Type"),
+  
 });
 
-function CustRequestsScreen(props) {
+function CustRequestsScreen({navigation}) {
         //getting access to location
         const [location, setLocation] = useState(null);
         const [errorMsg, setErrorMsg] = useState(null);
+
+        const handleSubmit = (values) => {
+            navigation.navigate("CreateOrder",{
+                ...values
+            });
+        }
 
         useEffect(() => {
             (async () => {
@@ -46,29 +56,24 @@ function CustRequestsScreen(props) {
         //
         return (
             <Screen style={styles.container}>
+                
                 <AppForm
-                    initialValues={{ pickup: "", dropoff: "" , vehicle: null}}
-                    onSubmit={(values) => console.log(values)}
+                    initialValues={{ pickup: null, dropoff: null , vehicle: null}}
+                    onSubmit={handleSubmit}
                     validationSchema={validationSchema}
                 >
-                <AppFormField
-                    name="pickup"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    autoCompleteType="street-address"   
-                    placeholder="Pickup Location"
-                    textContentType="location"
-                />
-                <AppFormField
-                    name="dropoff"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    autoCompleteType="street-address"   
-                    placeholder="Dropoff Location"
-                    textContentType="location"
-                />
-                <AppFormPicker items={vehicle_types} name = "vehicles" placeholder = "Vehicle Type" AppFormPicker/>
-                <SubmitButton title = "Next" width = "70%" onPress = {() => navigation.navigate("CustNewOrderScreen")} />     
+                    <AppFormLocation
+                        label="Pickup Location"
+                        name="pickup"
+                        placeholder="Pickup Location"
+                    />
+                    <AppFormLocation
+                        label="Dropoff Location"
+                        name="dropoff"
+                        placeholder="Dropoff Location"
+                    />
+                    <AppFormPicker items={vehicle_types} name = "vehicle" placeholder = "Vehicle Type" AppFormPicker/>
+                    <SubmitButton title = "Next" width = "70%"/>     
                 </AppForm>
             </Screen>
         );

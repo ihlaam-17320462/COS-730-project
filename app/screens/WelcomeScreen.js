@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, View} from 'react-native';
 import * as Yup from 'yup';
 
 import { AppForm, AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
-
+import Screen from "../components/Screen";
 import AppButton from '../components/AppButton';
 
 const user_types = [
@@ -19,6 +19,7 @@ const validationSchema = Yup.object().shape({
   
 function WelcomeScreen(navigation) {
     return (
+    <Screen>
         <ImageBackground 
             style = {styles.background}
             resizeMode = "cover"
@@ -56,6 +57,7 @@ function WelcomeScreen(navigation) {
             </View>
             <AppButton title = "Don't have an account yet?" width = "100%" onPress = {() => navigation.navigate("Register")}/>    
         </ImageBackground>
+    </Screen>
     );
 }
 

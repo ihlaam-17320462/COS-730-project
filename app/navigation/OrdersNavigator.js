@@ -1,15 +1,19 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import CustTrackingScreen from "../screens/CustTrackingScreen";
+import CustOrderListScreen from "../screens/CustOrderListScreen";
+import colors from "../config/colours";
 
-//NOTE : Where user can see all previous orders
 
 const Stack = createStackNavigator();
 
 const OrdersNavigator = () => (
-  <Stack.Navigator >
-    <Stack.Screen name="TrackDelivery" component={CustTrackingScreen} />
+  <Stack.Navigator 
+    screenOptions={{ 
+      headerStyle: { backgroundColor: colors.primary},
+      headerTintColor: colors.secondary,}}
+  > 
+  <Stack.Screen name="Orders" component={CustOrderListScreen} /> 
   </Stack.Navigator>
 );
 

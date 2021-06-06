@@ -23,7 +23,7 @@ function AppCard({ title, subTitle, image }) {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 15,
-    backgroundColor: colors.accent1,
+    backgroundColor: colors.white,
     marginBottom: 20,
     overflow: "hidden",
   },
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   subTitle: {
-    color: colors.secondary,
+    color: colors.accent3,
     fontWeight: "bold",
   },
   title: {
