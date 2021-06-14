@@ -1,7 +1,7 @@
 //NOTE : Must still integrate with google maps search, need Api key to do
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import {NavigationContainer, useNavgiation} from "@react-navigation/native";
+import {NavigationContainer, useNavigation} from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/stack";
 import * as Yup from "yup";
 import * as Location from 'expo-location';
@@ -9,6 +9,7 @@ import * as Location from 'expo-location';
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
 import AppFormLocation from "../components/forms/AppFormLocation";
+
 
 const vehicle_types = [
     { label : "Scooter", value : 1} ,
@@ -28,7 +29,7 @@ function CustRequestsScreen({navigation}) {
         const [location, setLocation] = useState(null);
         const [errorMsg, setErrorMsg] = useState(null);
 
-        const handleSubmit = (values) => {
+        const handleSubmit = async (values) => {
             navigation.navigate("CreateOrder",{
                 ...values
             });
@@ -53,7 +54,7 @@ function CustRequestsScreen({navigation}) {
         } else if (location) {
             text = JSON.stringify(location);
         }
-        //
+        
         return (
             <Screen style={styles.container}>
                 
@@ -72,7 +73,16 @@ function CustRequestsScreen({navigation}) {
                         name="dropoff"
                         placeholder="Dropoff Location"
                     />
+
                     <AppFormPicker items={vehicle_types} name = "vehicle" placeholder = "Vehicle Type" AppFormPicker/>
+                    <AppFormField
+                                name = "username"
+                                autoCorrect = {false}
+                                placeholder = "Username"/>
+                    <AppFormField
+                                name = "password"
+                                autoCorrect = {false}
+                                placeholder = "Password (cm)"/>
                     <SubmitButton title = "Next" width = "70%"/>     
                 </AppForm>
             </Screen>

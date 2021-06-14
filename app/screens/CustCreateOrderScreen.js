@@ -2,13 +2,14 @@
 //**Add field for user to upload optional image . does not work currently*/
 import React, { useState, useEffect } from "react";
 import { ImageBackground, StyleSheet, View, Image } from 'react-native';
-import {NavigationContainer, useNavgiation} from "@react-navigation/native";
+import {NavigationContainer, useNavigation} from "@react-navigation/native";
 import * as Yup from 'yup';
 import * as ImagePicker from 'expo-image-picker';
 
 import AppButton from "../components/AppButton";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
+import requestApi from "../api/request";
 
 const validationSchema = Yup.object().shape({
     width: Yup.string().required().label("Width"),
@@ -41,15 +42,17 @@ function CustCreateOrderScreen({route,navigation}) {
         }
     }
 
-    const handleSubmit = (values) => {
-        if (!imageUri){
-            return alert("Please select an image");
-        }
-        navigation.navigate("CustOrdersScreen",{
+    const handleSubmit = async (request) => {
+        // if (!imageUri){
+        //     return alert("Please select an image");
+        // }
+        const result =  await requestApi.addRequest({
+            ...request,
             ...route.params,
-            ...values,
-            imageUri
         })
+        if (!result.ok)
+            return alert ("Could not save the request");
+            alert ("Success");
     }
     
     
