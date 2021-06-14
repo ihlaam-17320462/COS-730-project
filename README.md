@@ -1,6 +1,6 @@
 # DropIT
 
-![alt text](https://github.com/ihlaam-17320462/COS-730-project/blob/main/app/assets/icon_solid.png)
+![alt text](https://github.com/Ihlaam/DropIT/blob/main/app/assets/icon_solid.png)
 
 ### Description
 
@@ -21,3 +21,8 @@ interaction.
 
 ### Project management tool
 - Trello - https://trello.com/b/fCNYr5Lw
+
+
+### Environment variables
+- create .env file in root  
+- Add GOOGLE_MAPS_API_KEY={YOUR_API_KEY} for google maps services
