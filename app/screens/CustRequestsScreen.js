@@ -73,16 +73,7 @@ function CustRequestsScreen({navigation}) {
                         name="dropoff"
                         placeholder="Dropoff Location"
                     />
-
                     <AppFormPicker items={vehicle_types} name = "vehicle" placeholder = "Vehicle Type" AppFormPicker/>
-                    <AppFormField
-                                name = "username"
-                                autoCorrect = {false}
-                                placeholder = "Username"/>
-                    <AppFormField
-                                name = "password"
-                                autoCorrect = {false}
-                                placeholder = "Password (cm)"/>
                     <SubmitButton title = "Next" width = "70%"/>     
                 </AppForm>
             </Screen>

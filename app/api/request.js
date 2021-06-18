@@ -4,7 +4,7 @@ const endpoint = "/orders"
 
 
 export const addRequest = (request) => {
-return client.post(endpoint, request);
+  return client.post(endpoint, request);
 
 }
 
