@@ -1,13 +1,14 @@
 //NOTE : Must still integrate with google maps search, need Api key to do
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import {NavigationContainer, useNavgiation} from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/stack";
 import * as Yup from "yup";
 import * as Location from 'expo-location';
 
 import Screen from "../components/Screen";
-import { AppForm, AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
+import { AppForm, AppFormPicker, SubmitButton } from "../components/forms";
+import AppFormLocation from "../components/forms/AppFormLocation";
+import ImageBackground from "react-native/Libraries/Image/ImageBackground";
+
 
 const vehicle_types = [
     { label : "Scooter", value : 1} ,
@@ -16,15 +17,22 @@ const vehicle_types = [
 ];
 
 const validationSchema = Yup.object().shape({
-  pickup: Yup.string().required().label("Pickup Address"),
-  dropoff: Yup.string().required().label("Dropoff Address"),
-  vehicle: Yup.object().required().nullable().label("Vehicle Type")
+  pickup: Yup.object().required().nullable().label('Pickup Location'),
+  dropoff: Yup.object().required().nullable().label("Dropoff Address"),
+  vehicle: Yup.object().required().nullable().label("Vehicle Type"),
+  
 });
 
-function CustRequestsScreen(navigation) {
+function CustRequestsScreen({navigation}) {
         //getting access to location
         const [location, setLocation] = useState(null);
         const [errorMsg, setErrorMsg] = useState(null);
+
+        const handleSubmit = async (values) => {
+            navigation.navigate("CreateOrder",{
+                ...values
+            });
+        }
 
         useEffect(() => {
             (async () => {
@@ -45,32 +53,34 @@ function CustRequestsScreen(navigation) {
         } else if (location) {
             text = JSON.stringify(location);
         }
-        //
+        
         return (
-            <Screen style={styles.container}>
+            <Screen>                
                 <AppForm
-                    initialValues={{ pickup: "", dropoff: "" , vehicle: null}}
-                    onSubmit={(values) => console.log(values)}
-                    validationSchema={validationSchema}
-                >
-                <AppFormField
-                    name="pickup"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    autoCompleteType="street-address"   
-                    placeholder="Pickup Location"
-                    textContentType="location"
-                />
-                <AppFormField
-                    name="dropoff"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    autoCompleteType="street-address"   
-                    placeholder="Dropoff Location"
-                    textContentType="location"
-                />
-                <AppFormPicker items={vehicle_types} name = "vehicles" placeholder = "Vehicle Type" AppFormPicker/>
-                <SubmitButton title = "Next" width = "70%" onPress = {() => navigation.navigate("CreateOrder")} />     
+                    initialValues={{ pickup: null, dropoff: null , vehicle: null}}
+                    onSubmit={handleSubmit}
+                    validationSchema={validationSchema}>
+                <ImageBackground
+                    style = {styles.background}
+                    resizeMode = "contain"
+                    source = {require('../assets/takeaway.png')}>
+                    <View style = {styles.container}>
+                        <AppFormLocation
+                            label="Pickup Location"
+                            name="pickup"
+                            placeholder="Pickup Location"/>
+                        <AppFormLocation
+                            label="Dropoff Location"
+                            name="dropoff"
+                            placeholder="Dropoff Location"/>
+                    </View>
+                    <View style={styles.picker}>
+                        <AppFormPicker items={vehicle_types} name = "vehicle" placeholder = "Vehicle Type" AppFormPicker/>
+                    </View>
+                    <View styles={styles.buttonContainer}>
+                        <SubmitButton title = "Continue" width = "100%" />
+                    </View> 
+                </ImageBackground>
                 </AppForm>
             </Screen>
         );
@@ -78,22 +88,30 @@ function CustRequestsScreen(navigation) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    width: "90%",
-    alignItems: "center",
-    alignContent: "center",
-  },
-  logo: {
-    width: 80,
-    height: 80,
-    alignSelf: "center",
-    marginTop: 50,
-    marginBottom: 20,
+    position: "absolute",
+    top: 0,
+    padding: 20,
+    width : "90%",
+    alignItems : "center",
+    justifyContent : "center",
+    position: "absolute",
   },
   picker: {
       position: "absolute",
-      bottom: 20,
+      bottom: 100,
+      width : "70%"
   },
+  background: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+ },
+ buttonContainer: {
+    position: "absolute",
+    bottom: 20,
+    alignItems: 'center', 
+    justifyContent: 'center',
+}
 });
 
 export default CustRequestsScreen;

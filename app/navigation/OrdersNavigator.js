@@ -13,7 +13,7 @@ const OrdersNavigator = () => (
       headerStyle: { backgroundColor: colors.primary},
       headerTintColor: colors.secondary,}}
   > 
-  <Stack.Screen name="Orders" component={CustOrderListScreen} /> 
+  <Stack.Screen name="Orders" component={CustOrderListScreen} options={{headerLeft: null}}/> 
   </Stack.Navigator>
 );
 
