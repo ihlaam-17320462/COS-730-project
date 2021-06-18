@@ -65,7 +65,7 @@ function CustCreateOrderScreen({route,navigation}) {
             <ImageBackground
                 style = {styles.background}
                 resizeMode = "contain"
-                source = {require('../assets/FreeShipping-rafiki.png')}
+
                 >
                 <View style = {styles.dimensionsContainer}>
                             <AppFormField
