@@ -16,7 +16,7 @@ const AccountNavigator = () => (
       headerStyle: { backgroundColor: colors.primary},
       headerTintColor: colors.secondary,
   }}>
-  <Stack.Screen name="Account" component={CustAccountScreen} options={{headerLeft: null}}/>
+
   <Stack.Screen name="Payment" component={CustPaymentScreen} />
   <Stack.Screen name="Notification" component={CustActivityScreen} />
   </Stack.Navigator>

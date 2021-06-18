@@ -18,9 +18,7 @@ const RequestNavigator = () => (
       headerTintColor: colors.secondary,
     }}
   > 
-  <Stack.Screen name="Requests" component={CustRequestsScreen} options={{headerLeft: null, headerTitle: "Request"}} />
-  <Stack.Screen name="OrderDetails" component={CustOrderDetailsScreen} />
-  <Stack.Screen name="CreateOrder" component={CustCreateOrderScreen} options={{headerTitle: "Create Order"}}/>
+
   <Stack.Screen name="Track" component={CustTrackingScreen} />
   </Stack.Navigator>
 );

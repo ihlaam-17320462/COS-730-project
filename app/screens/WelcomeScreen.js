@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     loginContainer: {
-        padding : 5,
+
         width : "80%",
         alignItems : "center",
     },

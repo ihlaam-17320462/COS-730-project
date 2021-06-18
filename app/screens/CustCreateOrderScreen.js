@@ -65,7 +65,7 @@ function CustCreateOrderScreen({route,navigation}) {
             <ImageBackground
                 style = {styles.background}
                 resizeMode = "contain"
-                source = {require('../assets/delivery_3.png')}
+
                 >
                 <View style = {styles.dimensionsContainer}>
                             <AppFormField
