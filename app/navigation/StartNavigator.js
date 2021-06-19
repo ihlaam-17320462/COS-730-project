@@ -7,18 +7,17 @@ import CustRequestsScreen from "../screens/CustRequestsScreen";
 
 const Stack = createStackNavigator();
 
-const AuthNavigator = () => (
+const StartNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen
       name="Welcome"
       component={WelcomeScreen}
       options={{ 
-          headerShown: false,
-          headerLeft : null, }}     
+          headerShown: false}}     
     />
-    <Stack.Screen name="LoggedIn" component={CustRequestsScreen} />
+    <Stack.Screen name="Requests" component={CustRequestsScreen} />
     <Stack.Screen name="Register" component={RegisterScreen} />
   </Stack.Navigator>
 );
 
-export default AuthNavigator;
+export default StartNavigator;

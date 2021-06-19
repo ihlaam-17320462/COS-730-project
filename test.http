@@ -1,0 +1,11 @@
+POST http://localhost:4000/api/orders
+Content-Type: application/json
+
+        {   
+            "plocation":["1111,2222"],
+            "password":"kippie",
+            "height":"6000",
+            "length":"3000"            
+        }
+        
+   
