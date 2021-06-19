@@ -7,8 +7,10 @@ const mongoose = require('mongoose');
 router.post('/' , (request , response) => {
     const driver = new DriverTemplate({
         name: request.body.name,
-        vehicle:request.body.vehicle,
         image:request.body.image,
+        vehicleImage:request.body.vehicleImage,
+        vehicleType:request.body.vehicleType,
+        vehicleRegistration:request.body.vehicleRegistration,
         location: {
             type:'Point',
             coordinates:[
