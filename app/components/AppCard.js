@@ -1,22 +1,28 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
 
 import AppText from "./AppText";
-import colors from "../config/colors";
+import colors from "../config/colours";
 
-function AppCard({ title, subTitle, image }) {
+function AppCard({ title1, title2, subtitle, image, onPress }) {
   return (
-    <View style={styles.card}>
-      <Image style={styles.image} source={image} />
-      <View style={styles.detailsContainer}>
-        <Text style={styles.title} numberOfLines={1}>
-          {title}
-        </Text>
-        <Text style={styles.subTitle} numberOfLines={2}>
-          {subTitle}
-        </Text>
+    <TouchableHighlight underlayColor={colors.lightgrey} onPress={onPress}>
+      <View style={styles.card}>  
+        <Image style={styles.image} source={image} />
+          <View style={styles.detailsContainer}>
+              <AppText style={styles.subtitle} numberOfLines={1}>
+                {subtitle}
+              </AppText>
+              <AppText style={styles.title} numberOfLines={1}>
+                {title1}
+              </AppText>
+              <AppText style={styles.title} numberOfLines={1}>
+                {title2}
+              </AppText>
+          </View>
       </View>
-    </View>
+    </TouchableHighlight>
+
   );
 }
 
@@ -32,14 +38,15 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 200,
+    height: 160,
   },
-  subTitle: {
-    color: colors.secondary,
+  subtitle: {
+    color: colors.accent1,
     fontWeight: "bold",
   },
   title: {
     marginBottom: 7,
+    fontSize: 14,
   },
 });
 
