@@ -43,6 +43,20 @@ function CustCreateOrderScreen({route,navigation}) {
         }
     }
 
+    // const handleSubmit = async (request) => {
+    //     // if (!imageUri){
+    //     //     return alert("Please select an image");
+    //     // }
+    //     const result =  await requestApi.addRequest({
+    //         ...request,
+    //         ...route.params,
+    //     })
+    //     if (!result.ok)
+    //         return alert ("Could not save the request");
+    //         alert ("Success");
+    // }
+  
+
     const handleSubmit = async (request) => {
         // if (!imageUri){
         //     return alert("Please select an image");
@@ -58,6 +72,7 @@ function CustCreateOrderScreen({route,navigation}) {
             navigation.navigate("Orders");
     }
     
+
 
     return (
     <Screen>
