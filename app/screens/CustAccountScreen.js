@@ -32,7 +32,7 @@ const accountItems = [
   },
 ];
 
-function CustAccountScreen(props) {
+function CustAccountScreen({navigation}) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -62,6 +62,7 @@ function CustAccountScreen(props) {
       </View>
       <ListItem
         title="Log Out"
+        onPress={() => navigation.navigate("Track")}
         IconComponent={<Icon name="logout" backgroundColor = {colours.primary} />}
       />
     </Screen>

@@ -6,22 +6,22 @@ import AppButton from "../components/AppButton";
 import ListItem from "../components/ListItem";
 import colors from "../config/colours";
 
-function CustOrderScreen(props) {
+function CustOrderDetailsScreen(navigation) {
   return (
     <View>
-      <Image style={styles.image} source={require("../assets/package1.jpg")} />
+      <Image style={styles.image} source={require("../assets/toyota.jpeg")} />
       <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>Thursday 17th June 16:49</AppText>
+        <AppText style={styles.title}>Monday 21 June 16:49</AppText>
         <AppText style={styles.price}>R100</AppText>
         <View style={styles.driverContainer}>
             <ListItem
-            image={require("../assets/driver1.png")}
-            title="Alice"
+            image={require("../assets/driver2.jpg")}
+            title="Stacey"
             subTitle="Toyota Avanza"
             />
         </View>
-        <AppButton title = "Accept" width = "100%" />    
-        <AppButton title = "Reject" width = "100%" />    
+        <AppButton title = "Accept" width = "100%"/>    
+        <AppButton title = "Reject" width = "100%"/>    
       </View>
     </View>
   );
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     height: 300,
   },
   price: {
-    color: colors.secondary,
+    color: colors.accent3,
     fontWeight: "bold",
     fontSize: 20,
     marginVertical: 10,
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustOrderScreen;
+export default CustOrderDetailsScreen;

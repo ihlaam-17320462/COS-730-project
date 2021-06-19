@@ -9,7 +9,7 @@ function ListItemRejectAction({ onPress }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
         <MaterialCommunityIcons
-          name="close-thick"
+          name="trash-can"
           size={35}
           color={colors.white}
         />

@@ -1,69 +1,55 @@
-//NOTE: List of all requests from drivers, you can swipe right or left, after you create an order you will
-//be redirected to this list
-import React, { useState } from "react";
+//NOTE: List of all customers orders
+import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/Screen";
-import ListItem from "../components/ListItem";
-import ListItemSeparatorComponent from "../components/ListItemSeparatorComponent";
-import ListItemMoreAction from "../components/ListItemMoreAction";
+import AppCard from "../components/AppCard";
+import colours from "../config/colours";
 
-const initialRequests = [
+const orders = [
   {
     id: 1,
-    title: "T1",
-    description: "D1",
-    image: require("../assets/driver1.png"),
+    date: "21 June 2021",
+    pickup: "36 Boundary Road, Houghston Estate, Johannesburg, South Africa",
+    dropoff: "8 Hillside Road, Parktown, Johannesburg, South Africa",
+    image: require("../assets/package1.jpg"),
   },
   {
     id: 2,
-    title: "T2",
-    description: "D2",
-    image: require("../assets/driver1.png"),
+    date: "22 June 2021",
+    pickup: "120 End Street, Doornfontein, Johannesburg, South Africa",
+    dropoff: "129 Rivonia Road, Sandown, Sandton, South Africa",
+    image: require("../assets/package2.jpg"),
   },
   
 ];
 
-function CustOrdersScreen(props) {
-  const [requests, setRequests] = useState(initialRequests);
-  const [refreshing, setRefreshing] = useState(false);
-
-  // const handleDelete = (request) => {
-  //   setRequests(requests.filter((r) => r.id !== request.id));
-  // };
-
+function CustOrderListScreen(navigation) {
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <FlatList
-        data={requests}
-        keyExtractor={(request) => request.id.toString()}
+        data={orders}
+        keyExtractor={order => order.id.toString()}
         renderItem={({ item }) => (
-          <ListItem
-            title={item.title}
-            subTitle={item.description}
+          <AppCard
+            subtitle={item.date}
+            title1={item.pickup}
+            title2={item.dropoff}
             image={item.image}
-            onPress={() => console.log("Message selected", item)}
-            renderRightActions={() => (
-                <ListItemMoreAction onPress={() => ListItemMoreAction(item)} /> )} /* if swiped should show more details*/
+            onPress= {() => console.log("Order selected", item)}
           />
         )}
-        ItemSeparatorComponent={ListItemSeparatorComponent}
-        refreshing={refreshing}
-        onRefresh={() => {
-          setRequests([
-            {
-              id: 2,
-              title: "T2",
-              description: "D2",
-              image: require("../assets/driver1.png"),
-            },
-          ]);
-        }}
+
       />
     </Screen>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    padding: 20,
+    backgroundColor: colours.lightgrey,
+  }
+});
 
-export default CustOrdersScreen;
+export default CustOrderListScreen;

@@ -18,9 +18,10 @@ const validationSchema = Yup.object().shape({
   });
   
 function CustCreateOrderScreen({route,navigation}) {
-    const {pickup,dropoff,vehicle} = route.params;
     const [imageUri, setImageUri] = useState(null);
 
+
+    
     const requestPermission = async () => {
         const {status} = await ImagePicker.requestCameraPermissionsAsync();
           if (status !== 'granted'){
@@ -53,9 +54,11 @@ function CustCreateOrderScreen({route,navigation}) {
         if (!result.ok)
             return alert ("Could not save the request");
             alert ("Success");
+
+            navigation.navigate("Orders");
     }
     
-    
+
     return (
     <Screen>
         <AppForm
@@ -65,7 +68,7 @@ function CustCreateOrderScreen({route,navigation}) {
             <ImageBackground
                 style = {styles.background}
                 resizeMode = "contain"
-
+                source = {require('../assets/send_gift.png')}
                 >
                 <View style = {styles.dimensionsContainer}>
                             <AppFormField
@@ -83,10 +86,12 @@ function CustCreateOrderScreen({route,navigation}) {
                 </View>
                 <View style={styles.imageContainer}>
                     <AppButton title="Select an image from camera roll" onPress={pickImage} />
-                    {imageUri && <Image source={{ uri: imageUri }} style={{ width: 100, height: 100 }} />}
+                    {imageUri && <Image source={{ uri: imageUri }} 
+                    style={{ width: 100, height: 100 }} 
+                    onPress = {() => {navigation.navigate("RequestList")}} />}
                 </View>
                 <View styles={styles.buttonContainer}>
-                        <SubmitButton title = "Create New Order" width = "80%" />
+                        <SubmitButton title = "Create New Order" width = "80%" onPress = {() => {navigation.navigate("OrderListScreen")}}/>
                 </View>
             </ImageBackground>
         </AppForm>
