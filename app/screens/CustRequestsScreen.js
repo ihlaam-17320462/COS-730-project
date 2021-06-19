@@ -2,9 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import * as Yup from "yup";
+
+
 import * as Location from 'expo-location';
 
 import Screen from "../components/Screen";
+import TimePicker from "../components/DateTimePicker";
 import { AppForm, AppFormPicker, SubmitButton } from "../components/forms";
 import AppFormLocation from "../components/forms/AppFormLocation";
 import ImageBackground from "react-native/Libraries/Image/ImageBackground";
@@ -27,6 +30,7 @@ function CustRequestsScreen({navigation}) {
         //getting access to location
         const [location, setLocation] = useState(null);
         const [errorMsg, setErrorMsg] = useState(null);
+        const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
         const handleSubmit = async (values) => {
             navigation.navigate("CreateOrder",{
@@ -74,8 +78,11 @@ function CustRequestsScreen({navigation}) {
                             name="dropoff"
                             placeholder="Dropoff Location"/>
                     </View>
-                    <View style={styles.picker}>
+                    {/* <View style={styles.picker}>
                         <AppFormPicker items={vehicle_types} name = "vehicle" placeholder = "Vehicle Type" AppFormPicker/>
+                    </View> */}
+                    <View>
+                        <TimePicker />
                     </View>
                     <View styles={styles.buttonContainer}>
                         <SubmitButton title = "Continue" width = "100%" />
