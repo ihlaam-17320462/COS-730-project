@@ -4,12 +4,12 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colours";
 
-function ListItemAcceptAction({ onPress }) {
+function ListItemMoreAction({ onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
         <MaterialCommunityIcons
-          name="check-bold"
+          name="arrow-right"
           size={35}
           color={colors.white}
         />
@@ -20,11 +20,11 @@ function ListItemAcceptAction({ onPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.accept,
+    backgroundColor: colors.primary,
     width: 70,
     justifyContent: "center",
     alignItems: "center",
   },
 });
 
-export default ListItemAcceptAction;
+export default ListItemMoreAction;

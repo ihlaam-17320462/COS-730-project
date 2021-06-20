@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, View} from 'react-native';
 import * as Yup from 'yup';
 
 import { AppForm, AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
-
+import Screen from "../components/Screen";
 import AppButton from '../components/AppButton';
 
 const user_types = [
@@ -17,17 +17,25 @@ const validationSchema = Yup.object().shape({
     user: Yup.object().required().nullable().label("User Type")
   });
   
-function WelcomeScreen(navigation) {
+function WelcomeScreen({navigation}) {
+
+    const handleLogin = async (values) => {
+        navigation.navigate("Requests",{
+            ...values
+        });
+    }
+
     return (
+    <Screen>
         <ImageBackground 
             style = {styles.background}
-            resizeMode = "cover"
-            source = {require('../assets/Messenger-pana.png')}
+            resizeMode = "contain"
+            source = {require('../assets/delivery_man.png')}
         >
             <View style = {styles.loginContainer}>
                 <AppForm
                     initialValues={{ user: null, email: "", password: "" }}
-                    onSubmit={(values) => console.log(values)}
+                    onSubmit={handleLogin}
                     validationSchema={validationSchema}
                 >
                   <AppFormPicker 
@@ -51,11 +59,12 @@ function WelcomeScreen(navigation) {
                         textContentType = "password"
                         secureTextEntry
                         />
-                        <SubmitButton title = "Sign In" width = "50%" onPress = {() => navigation.navigate("LoggedIn")} />     
+                        <SubmitButton title = "Sign In" width = "50%" />     
                 </AppForm>
             </View>
-            <AppButton title = "Don't have an account yet?" width = "100%" onPress = {() => navigation.navigate("Register")}/>    
+            <AppButton title = "Don't have an account yet?" style={styles.registerButton} onPress = {() => {navigation.navigate("Register")}}/>    
         </ImageBackground>
+    </Screen>
     );
 }
 
@@ -66,8 +75,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     loginContainer: {
-        padding : 10,
+        padding : 5,
         width : "80%",
+        alignItems : "center",
+    },
+    registerButton: {
+        padding : 5,
+        width : "200%",
         alignItems : "center",
     },
 

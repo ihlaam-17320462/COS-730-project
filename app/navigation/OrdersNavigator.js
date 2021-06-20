@@ -1,15 +1,19 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import CustOrderScreen from "../screens/CustOrdersScreen";
+import CustOrderListScreen from "../screens/CustOrderListScreen";
+import colors from "../config/colours";
 
-//NOTE : Home screen, where user can create a new request 
 
 const Stack = createStackNavigator();
 
 const OrdersNavigator = () => (
-  <Stack.Navigator >
-    <Stack.Screen name="Orders" component={CustOrdersScreen} /> 
+  <Stack.Navigator 
+    screenOptions={{ 
+      headerStyle: { backgroundColor: colors.primary},
+      headerTintColor: colors.secondary,}}
+  > 
+  <Stack.Screen name="Orders" component={CustOrderListScreen} /> 
   </Stack.Navigator>
 );
 

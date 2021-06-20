@@ -8,15 +8,12 @@ import AccountNavigator from "./AccountNavigator";
 import colours from "../config/colours";
 
 const Tab = createBottomTabNavigator();
+
 const AppNavigator = () => (
   <Tab.Navigator
-    screenOptions={{
-        headerStyle: {backgroundColor: colours.primary},
-        headerTintColor: colours.secondary,
-    }}
     tabBarOptions = {{
         activeBackgroundColor : colours.primary,
-        activeTintColor : colours.accent3,
+        activeTintColor : colours.secondary,
         inactiveBackgroundColor : colours.primary,
         inactiveTintColor : colours.accent1,
     }}>
