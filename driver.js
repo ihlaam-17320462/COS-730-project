@@ -1,41 +1,75 @@
+const express = require('express');
+const router = express.Router();
+const DriverTemplate = require('../modules/driver')
 const mongoose = require('mongoose');
 
-const DriverSchema = new mongoose.Schema({   
-    name:{
-        type:String,
-        required:true,
-    },
-    image:{
-        type:String,
-        required:true,
-    },
-    vehicleImage:{
-        type:String,
-        required:true,
-    },
-    vehicleType:{
-        type:String,
-        required:true,
-    },
-    vehicleRegistration:{
-        type:String,
-        required:true,
-    },
-    date:{
-        type:Date,
-        default:Date.now
-    },
-    location:{
-        type: {
-          type: String,
-          enum: ['Point'],
-          required: true
-        },
-        coordinates: {
-          type: [Number],   //longitude first, latitude second
-          required: true
+// Create Driver
+router.post('/' , (request , response) => {
+    const driver = new DriverTemplate({
+        name: request.body.name,
+        image:request.body.image,
+        vehicleImage:request.body.vehicleImage,
+        vehicleType:request.body.vehicleType,
+        vehicleRegistration:request.body.vehicleRegistration,
+        location: {
+            type:'Point',
+            coordinates:[
+                request.body.location.longitude,
+                request.body.location.latitude,
+            ]
         }
-    }
+    });
+    driver.save()
+    .then(data => {
+        response.json(data)
+    })
+    .catch(error => {
+        response.status(500).json(error)
+    })
 })
 
-module.exports = mongoose.model('driverTable' , DriverSchema )
+// Update Driver 
+router.patch('/:id', async (request, response) => {
+    const driver = await DriverTemplate.findById(mongoose.Types.ObjectId(request.params.id)).catch(error => {return response.status(500).send(error)});
+    if (!driver){
+        return response.status(400).send("No driver found");
+    }
+    if (request.body.name){
+        driver.name = request.body.name
+    }
+    if (request.body.vehicle){
+        driver.vehicle = request.body.vehicle
+    }
+    if (request.body.image){
+        driver.image = request.body.image
+    }
+    if (request.body.location){
+        driver.location = {
+            type:'Point',
+            coordinates:[
+                request.body.location.longitude,
+                request.body.location.latitude,
+            ]
+        }
+    }
+    driver.save()
+    .then(data => {
+        response.json(data)
+    })
+    .catch(error => {
+        response.status(500).json(error)
+    })
+})
+
+// Get Driver
+router.get('/:id', (request, response) => {
+    DriverTemplate.findById(mongoose.Types.ObjectId(request.params.id))
+    .then((driver) => {
+        response.json(driver);
+    })
+    .catch(error => {
+        response.status(400).json(error);
+    })
+})
+
+module.exports = router;

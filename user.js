@@ -1,26 +1,23 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const userInfoTemplate = require('../modules/user')
 
-//Create Schema for User Info
-
-const UserInfoSchema = new mongoose.Schema({
-    firstName:{
-         type:String ,
-         required:true},       
-    lastName:{
-         type:String ,
-        required:true},
-    userName:{
-        type:String ,
-        required:false},
-    password:{
-         type:String ,
-        required:true},
-    date:{
-        type:Date,
-        default:Date.now
-
-    }
-        
+router.post('/' , (request , response)=> {
+    const registeredUser = new userInfoTemplate(        
+        {
+        firstName:request.body.firstName,
+        lastName:request.body.lastName,
+        username:request.body.userName,
+        password:request.body.password 
+        })
+     
+    registeredUser.save()
+    .then(data => {
+        response.json(data)
+    })
+    .catch(error => {
+        response.json(error)
+    })
 })
 
-module.exports = mongoose.model('registerTable' , UserInfoSchema )
+module.exports = router;
