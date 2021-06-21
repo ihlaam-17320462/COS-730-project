@@ -14,10 +14,7 @@ interaction.
 
 
 ### Documentation
-- SRS 1 - https://www.overleaf.com/read/wqgqsxmgscvr
-- User Manual - 
-- SRS 2 - https://www.overleaf.com/read/dhvzxhsfmhmm
-
+- User Manual - https://www.overleaf.com/read/wqgqsxmgscvr
 
 ### Project management tool
 - Trello - https://trello.com/b/fCNYr5Lw
