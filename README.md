@@ -1,7 +1,7 @@
 ## 📦 DropIT
 
 ### Documentation
-- User Manual - https://www.overleaf.com/read/wqgqsxmgscvr
+- User Manual - https://www.overleaf.com/read/cfbwwcfzzkyg
 
 ### Project management tool
 - Trello - https://trello.com/b/fCNYr5Lw
